@@ -12,12 +12,8 @@ export default class PaletteError extends Error {
      * @constructor
      * @param {(string | Error)} message - The error message or an Error object.
      */
-    constructor (message: string | Error) {
-        super((
-            message as Error
-        )?.message || (
-            message as string
-        ));
+    constructor(message: string | Error) {
+        super((message as Error)?.message || (message as string));
 
         /**
          * The name of the error.
@@ -32,8 +28,7 @@ export default class PaletteError extends Error {
      * @param {Chalk} [chain] - The Chalk instance to chain with.
      * @returns {Chalk} A Chalk instance with the specified styles.
      */
-    palette (styles: string | string[] = [], chain?: Chalk): Chalk {
-        console.log('styles: ', styles);
+    palette(styles: string | string[] = [], chain?: Chalk): Chalk {
         const isArray = Array.isArray(styles);
         const isIllegal = !isArray && !isString(styles);
 
@@ -67,7 +62,7 @@ export default class PaletteError extends Error {
      * @param {string} [style] - The style to apply.
      * @returns {Chalk} A Chalk instance with the specified style.
      */
-    private factory (chain: Chalk, style?: string): Chalk {
+    private factory(chain: Chalk, style?: string): Chalk {
         let nextChain;
 
         if (!isString(style)) {
@@ -79,10 +74,7 @@ export default class PaletteError extends Error {
         } else if (isRgb(style)) {
             nextChain = chain.rgb(...normalizeRgb(style));
         } else if (isBgHex(style)) {
-            nextChain =
-                chain.bgHex((
-                    style as string
-                ).replace(/^bg:/, ''));
+            nextChain = chain.bgHex((style as string).replace(/^bg:/, ''));
         } else if (isHex(style)) {
             nextChain = chain.hex(style);
         } else {
