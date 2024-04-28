@@ -8,6 +8,7 @@ Exception 是一个用于 Node.js 的自定义错误库，它提供了一种更�
 
 ![nodejs](https://img.shields.io/badge/NodeJS-≥14.x-lightseagreen?logo=powershell)
 ![Version](https://img.shields.io/badge/Version-1.0.0-cornflowerblue)
+[![codecov](https://codecov.io/gh/kabeep/exception/graph/badge.svg?token=KZH2CVD2CD)](https://codecov.io/gh/kabeep/exception)
 [![License](https://img.shields.io/badge/License-MIT-slateblue)](LICENSE)
 
 [English](README.md) | 简体中文

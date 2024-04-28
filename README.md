@@ -10,6 +10,7 @@ Exception is a custom error library for Node.js that provides a more flexible an
 
 ![nodejs](https://img.shields.io/badge/NodeJS-≥14.x-lightseagreen?logo=powershell)
 ![Version](https://img.shields.io/badge/Version-1.0.0-cornflowerblue)
+[![codecov](https://codecov.io/gh/kabeep/exception/graph/badge.svg?token=KZH2CVD2CD)](https://codecov.io/gh/kabeep/exception)
 [![License](https://img.shields.io/badge/License-MIT-slateblue)](LICENSE)
 
 English | [简体中文](README.zh-CN.md)
