@@ -17,7 +17,6 @@
         "lint": "xo src/**/*.ts --fix",
         "test": "vitest run",
         "coverage": "vitest run --coverage && ./coverage/index.html",
-        "perform": "ts-node scripts/perform/core.ts",
         "watch": "tsup --watch",
         "watch:test": "vitest",
         "build": "tsup --dts --treeshake smallest",
