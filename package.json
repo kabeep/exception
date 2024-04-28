@@ -2,21 +2,16 @@
     "name": "exception",
     "version": "0.0.0",
     "description": "Exception is a custom error library for Node.js that provides a more flexible and customizable way of handling errors.",
-    "author": "Zhang Zixin (kabeep)",
-    "homepage": "https://github.com/kabeep/exception#readme",
-    "repository": "git@github.com:kabeep/exception.git",
-    "license": "MIT",
-    "main": "./lib/index.js",
-    "module": "./lib/esm/index.mjs",
-    "types": "./lib/index.d.ts",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "files": [
-        "lib"
+        "dist"
     ],
     "scripts": {
-        "docs": "jsdoc -c jsdoc.config.json && ./docs/index.html",
+        "docs": "jsdoc -c jsdoc.config.json",
         "lint": "xo src/**/*.ts --fix",
         "test": "vitest run",
-        "coverage": "vitest run --coverage && ./coverage/index.html",
+        "coverage": "vitest run --coverage",
         "watch": "tsup --watch",
         "watch:test": "vitest",
         "build": "tsup --dts --treeshake smallest",
@@ -38,9 +33,10 @@
     "dependencies": {
         "chalk": "^4.1.2"
     },
-    "engines": {
-        "node": ">=14"
-    },
+    "author": "Zhang Zixin (kabeep)",
+    "homepage": "https://github.com/kabeep/exception#readme",
+    "repository": "git@github.com:kabeep/exception.git",
+    "bugs": "https://github.com/kabeep/exception/issue",
     "keywords": [
         "nodejs",
         "error",
@@ -50,5 +46,9 @@
         "unexpected",
         "exception",
         "expectation"
-    ]
+    ],
+    "engines": {
+        "node": ">=14"
+    },
+    "license": "MIT"
 }

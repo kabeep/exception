@@ -1,5 +1,5 @@
-# build
-lib
+# Build
+dist/
 
 # Cache
 .cache

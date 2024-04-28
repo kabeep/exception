@@ -7,7 +7,7 @@
     },
     "source": {
         "include": [
-            "lib/esm",
+            "dist",
             "package.json",
             "README.md"
         ],

@@ -2,8 +2,8 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
     entry: ['src/index.ts'],
-    format: ['cjs', 'esm'],
-    outDir: 'lib',
+    format: ['cjs'],
+    outDir: 'dist',
     target: ['node10'],
     // treeshake: 'smallest',
     bundle: true,
