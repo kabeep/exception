@@ -1,1 +1,3 @@
-export { default } from './core';
+import Exception from './core';
+
+export default Exception;
