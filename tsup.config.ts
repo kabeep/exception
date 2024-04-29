@@ -4,7 +4,7 @@ export default defineConfig({
     entry: ['src/index.ts'],
     format: ['cjs'],
     outDir: 'dist',
-    target: ['node10'],
+    target: ['es2020'],
     // treeshake: 'smallest',
     bundle: true,
     clean: true,
