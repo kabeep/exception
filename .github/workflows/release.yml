@@ -8,6 +8,8 @@ on:
     tags:
       - 'v*'
       - '!v*rc*'
+      - '!v*beta*'
+      - '!v*alpha*'
 
 jobs:
   build:
