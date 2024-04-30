@@ -1,6 +1,6 @@
 {
     "name": "@kabeep/exception",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "type": "module",
     "description": "Exception is a custom error library for Node.js that provides a more flexible and customizable way of handling errors.",
     "main": "./dist/index.js",
