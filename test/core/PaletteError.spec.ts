@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 import { expect, test } from 'vitest';
 import PaletteError from '../../src/core/PaletteError';
 

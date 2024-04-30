@@ -20,5 +20,8 @@
         "node_modules",
         "example",
         "dist"
-    ]
+    ],
+    "ts-node": {
+        "esm": true
+    }
 }

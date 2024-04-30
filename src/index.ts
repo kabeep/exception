@@ -1,3 +1,1 @@
-import Exception from './core';
-
-export default Exception;
+export { default } from './core/index.js';

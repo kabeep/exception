@@ -1,3 +1,3 @@
-import type { BackgroundColor, ForegroundColor, Modifiers } from 'chalk';
+import type { BackgroundColorName, ForegroundColorName, ModifierName } from 'chalk';
 
-export type ChalkStyle = typeof BackgroundColor | typeof ForegroundColor | typeof Modifiers | string;
+export type ChalkStyle = BackgroundColorName | ForegroundColorName | ModifierName | string;

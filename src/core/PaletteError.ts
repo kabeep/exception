@@ -1,5 +1,5 @@
-import chalk, { type Chalk } from 'chalk';
-import { isBgHex, isBgRgb, isHex, isRgb, isString, normalizeRgb } from '../helpers';
+import chalk, { type ChalkInstance } from 'chalk';
+import { isBgHex, isBgRgb, isHex, isRgb, isString, normalizeRgb } from '../helpers/index.js';
 
 /**
  * A palette error.
@@ -25,10 +25,10 @@ export default class PaletteError extends Error {
     /**
      * Returns a Chalk instance with specified styles applied.
      * @param {(string | string[])} [styles=[]] - The styles to apply.
-     * @param {Chalk} [chain] - The Chalk instance to chain with.
-     * @returns {Chalk} A Chalk instance with the specified styles.
+     * @param {ChalkInstance} [chain] - The Chalk instance to chain with.
+     * @returns {ChalkInstance} A Chalk instance with the specified styles.
      */
-    palette(styles: string | string[] = [], chain?: Chalk): Chalk {
+    palette(styles: string | string[] = [], chain?: ChalkInstance): ChalkInstance {
         const isArray = Array.isArray(styles);
         const isIllegal = !isArray && !isString(styles);
 
@@ -58,11 +58,11 @@ export default class PaletteError extends Error {
     /**
      * Creates a Chalk instance based on the given style.
      * @private
-     * @param {Chalk} chain - The Chalk instance to chain with.
+     * @param {ChalkInstance} chain - The Chalk instance to chain with.
      * @param {string} [style] - The style to apply.
-     * @returns {Chalk} A Chalk instance with the specified style.
+     * @returns {ChalkInstance} A Chalk instance with the specified style.
      */
-    private factory(chain: Chalk, style?: string): Chalk {
+    private factory(chain: ChalkInstance, style?: string): ChalkInstance {
         let nextChain;
 
         if (!isString(style)) {
@@ -76,11 +76,11 @@ export default class PaletteError extends Error {
         } else if (isBgHex(style)) {
             nextChain = chain.bgHex((style as string).replace(/^bg:/, ''));
         } else if (isHex(style)) {
-            nextChain = chain.hex(style);
+            nextChain = chain.hex(style as string);
         } else {
-            nextChain = chain[style];
+            nextChain = chain[style as keyof ChalkInstance] ?? chain;
         }
 
-        return nextChain;
+        return nextChain as ChalkInstance;
     }
 }

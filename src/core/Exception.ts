@@ -1,5 +1,5 @@
-import type { ChalkStyle } from '../shared';
-import PrintError from './PrintError';
+import type { ChalkStyle } from '../shared/index.js';
+import PrintError from './PrintError.js';
 
 /**
  * A custom exception with enhanced printing capabilities.

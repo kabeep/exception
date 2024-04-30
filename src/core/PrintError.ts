@@ -1,7 +1,7 @@
 import { basename } from 'node:path';
 import process from 'node:process';
-import type { ChalkStyle, TraceOption } from '../shared';
-import TraceError from './TraceError';
+import type { ChalkStyle, TraceOption } from '../shared/index.js';
+import TraceError from './TraceError.js';
 
 /**
  * An error with formatted printing capabilities.

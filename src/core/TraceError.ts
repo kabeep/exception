@@ -1,7 +1,7 @@
 import { basename, dirname } from 'node:path';
-import { normalizeNumber, normalizePath, normalizeTrack } from '../helpers';
-import type { TraceOption } from '../shared';
-import PaletteError from './PaletteError';
+import { normalizeNumber, normalizePath, normalizeTrack } from '../helpers/index.js';
+import type { TraceOption } from '../shared/index.js';
+import PaletteError from './PaletteError.js';
 
 /**
  * An error with stack trace information.
@@ -82,7 +82,7 @@ export default class TraceError extends PaletteError {
         }
 
         address = normalizePath(address);
-        let remaining = address;
+        let remaining = address ?? '';
 
         const lineMatch = /:(\d+):(\d+)\)?$/.exec(remaining);
         if (lineMatch) {
