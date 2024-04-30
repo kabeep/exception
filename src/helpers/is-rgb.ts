@@ -1,5 +1,5 @@
 function isRgb(value: string): value is string {
-    const rgbRegular = /^(?:\d{1,3},){2}\d{1,3}$/;
+    const rgbRegular = /^\((?:\d{1,3},){2}\d{1,3}\)$/;
     const numberRegular = /\d{1,3}/g;
 
     const numberMatch = value.match(numberRegular);

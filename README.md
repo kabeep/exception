@@ -15,6 +15,10 @@ Exception is a custom error library for Node.js that provides a more flexible an
 
 English | [简体中文](README.zh-CN.md)
 
+<img src="docs/images/Inheritance-and-prototype-chain.png" alt="inheritance-tree">
+
+Inheritance and the prototype chain
+
 </div>
 
 ## 📖 Introduction
@@ -30,14 +34,6 @@ The goal of Exception is to transform unexpected occurrences into anticipated ou
 
 It allows Error objects to throw exception and stack information in a more aesthetically pleasing and intuitive manner,
 and can also serve as Notify to output critical information in workflows.
-
-<div align="center">
-
-<img src="docs/images/class-inheritance.png" alt="inheritance-tree" width="200">
-
-class-inheritance
-
-</div>
 
 ## ⚙️ Installation
 
@@ -59,6 +55,8 @@ pnpm add @kabeep/exception
 
 [example](example/default.ts)
 
+![Plain-text-or-Error-object](docs/images/Plain-text-or-Error-object.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
@@ -72,6 +70,8 @@ throw new Exception(new Error('Argument example'));
 ### Using in Asynchronous Contexts
 
 [example](example/promise.ts)
+
+![Using-in-Asynchronous-Contexts](docs/images/Using-in-Asynchronous-Contexts.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -87,11 +87,13 @@ import Exception from '@kabeep/exception';
 
 [example](example/stylish.ts)
 
+![Custom-Styles](docs/images/Custom-Styles.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
-// Use custom style with chalk color, hex and rgb
-const stylish = ['51,51,51', 'bg:#f56c6c']
+// Use custom style with hex or rgb
+const stylish = '(51,51,51).bg#f56c6c';
 
 console.log(
     new Exception('Stylish example', stylish)
@@ -102,36 +104,43 @@ console.log(
 
 [example](example/extends.ts)
 
+![Custom-Exceptions](docs/images/Custom-Exceptions.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
 // > Warning
 class Warning extends Exception {
-    constructor (message: any) {
-        super(message, [' 51,51,51 ', 'bg:#e6a23c']);
+    constructor (message: string | Error) {
+        super(message, '( 51 ,51, 51 ).bg#e6a23c');
     }
 }
 
 const warn = new Warning('Inherited example');
 // Warning: Inherited example [Without style]
 console.log(`${warn}`);
+console.log(warn);
 ```
 
 ### Print Key Information
 
 [example](example/extends.ts)
 
+![Print-Key-Information](docs/images/Print-Key-Information.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
 // > Info
+const infoStyle = '(51,51,51).bg#409eff';
+
 class Info extends Exception {
-    constructor (message: any) {
-        super(message, ['51,51,51', 'bg:#409eff']);
+    constructor (message) {
+        super(message, infoStyle);
     }
 
     toString () {
-        return ` ${this.palette(['51,51,51', 'bg:#409eff'])(this.name)} ${this.message}`;
+        return ` ${this.palette(infoStyle)(this.padding(this.name))} ${this.message}`;
     }
 }
 
@@ -140,13 +149,15 @@ const tip = new Info('Inherited example');
 console.log(`${tip}`);
 
 // > Success
+const successStyle = '(51,51,51).bg#67c23a';
+
 class Success extends Exception {
-    constructor (message: any) {
-        super(message, ['51,51,51', 'bg:#67c23a']);
+    constructor (message) {
+        super(message, successStyle);
     }
 
     toString () {
-        return ` ${this.palette(['51,51,51', 'bg:#67c23a'])(this.name)} ${this.message}`;
+        return ` ${this.palette(successStyle)(this.padding(this.name))} ${this.message}`;
     }
 }
 
@@ -154,6 +165,49 @@ const pass = new Success('Inherited example');
 // Without stack
 console.log(pass.toString());
 ```
+
+## Supported styles
+
+- [Modifiers](https://github.com/chalk/chalk#modifiers)
+
+```json
+"dim.italic.underline"
+```
+
+- [Colors](https://github.com/chalk/chalk#colors)
+
+```json
+"magenta.cyan"
+```
+
+- [Background colors](https://github.com/chalk/chalk#background-colors)
+
+```json
+"bgMagenta.bgCyan"
+```
+
+- [Hex triplet](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet)
+
+```json
+"#fff.bg#333333"
+```
+
+- [RGB model](https://en.wikipedia.org/wiki/RGB_color_model)
+
+```json
+"(51,51,51).bg(24,124,255)"
+```
+
+- [CSS keywords](https://www.w3.org/wiki/CSS/Properties/color/keywords)
+
+```json
+"cyan.bgDarkblue"
+```
+
+## Related
+
+- [chalk](https://github.com/chalk/chalk) - Terminal string styling done right
+- [chalk-pipe](https://github.com/LitoMore/chalk-pipe) - Create chalk style schemes with simpler style strings
 
 ## 🤝 Contribution
 

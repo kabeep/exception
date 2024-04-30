@@ -1,5 +1,6 @@
 import chalk, { type ChalkInstance } from 'chalk';
-import { isBgHex, isBgRgb, isHex, isRgb, isString, normalizeRgb } from '../helpers/index.js';
+import chalkPipe from 'chalk-pipe';
+import { isBgRgb, isNil, isRgb, isString, normalizeRgb } from '../helpers/index.js';
 
 /**
  * A palette error.
@@ -24,63 +25,41 @@ export default class PaletteError extends Error {
 
     /**
      * Returns a Chalk instance with specified styles applied.
-     * @param {(string | string[])} [styles=[]] - The styles to apply.
-     * @param {ChalkInstance} [chain] - The Chalk instance to chain with.
+     * @param {string} styles - The styles to apply.
+     * @param {ChalkInstance} chain - The Chalk instance to chain with.
      * @returns {ChalkInstance} A Chalk instance with the specified styles.
      */
-    palette(styles: string | string[] = [], chain?: ChalkInstance): ChalkInstance {
-        const isArray = Array.isArray(styles);
-        const isIllegal = !isArray && !isString(styles);
-
-        if (isIllegal) return chalk;
-
-        if (isString(styles)) {
-            styles = [styles];
+    palette(styles?: string, chain?: ChalkInstance): ChalkInstance {
+        if (!isString(styles)) {
+            styles = '';
         }
 
-        const style = styles.pop();
-        const isLatest = styles.length === 0;
+        const list = styles
+            .split('.')
+            .map((style: string) => {
+                const _isRgb = isRgb(style);
+                const _isBgRgb = isBgRgb(style);
+                if (!_isRgb && !_isBgRgb) return style;
 
-        let nextChain = this.factory(chain ?? chalk, style);
+                if (isNil(chain)) chain = chalk;
 
-        if (!nextChain) {
-            nextChain = chain ?? chalk;
-            console.log(`ReferenceWarn: Unexpected ${style} style for chalk chain`);
-        }
+                const rgb = normalizeRgb(style, 'bg');
+                const operator = _isBgRgb ? 'bgRgb' : 'rgb';
+                chain = chain[operator](...rgb);
 
-        if (isLatest) {
-            return nextChain;
-        }
+                return undefined;
+            })
+            .filter(Boolean);
 
-        return this.palette(styles, nextChain);
+        return chalkPipe(list.join('.'), chain);
     }
 
     /**
-     * Creates a Chalk instance based on the given style.
-     * @private
-     * @param {ChalkInstance} chain - The Chalk instance to chain with.
-     * @param {string} [style] - The style to apply.
-     * @returns {ChalkInstance} A Chalk instance with the specified style.
+     * Adds padding around the provided content.
+     * @param {string} content - The content to pad.
+     * @returns {string} The padded content.
      */
-    private factory(chain: ChalkInstance, style?: string): ChalkInstance {
-        let nextChain;
-
-        if (!isString(style)) {
-            return chain;
-        }
-
-        if (isBgRgb(style)) {
-            nextChain = chain.bgRgb(...normalizeRgb(style, 'bg:'));
-        } else if (isRgb(style)) {
-            nextChain = chain.rgb(...normalizeRgb(style));
-        } else if (isBgHex(style)) {
-            nextChain = chain.bgHex((style as string).replace(/^bg:/, ''));
-        } else if (isHex(style)) {
-            nextChain = chain.hex(style as string);
-        } else {
-            nextChain = chain[style as keyof ChalkInstance] ?? chain;
-        }
-
-        return nextChain as ChalkInstance;
+    padding(content: string) {
+        return ` ${content} `;
     }
 }

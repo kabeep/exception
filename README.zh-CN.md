@@ -13,6 +13,10 @@ Exception 是一个用于 Node.js 的自定义错误库，它提供了一种更�
 
 [English](README.md) | 简体中文
 
+<img src="docs/images/Inheritance-and-prototype-chain.png" alt="inheritance-tree">
+
+继承与原型链
+
 </div>
 
 ## 📖 简介
@@ -25,14 +29,6 @@ Exception 的目标是尽可能的将 ~~**例外(Exception)**~~ 变为 **预期(
 
 它允许 _Error_ 对象以更美化与直观的方式将异常信息和栈信息抛出，
 也可以作为 _Notify_ 在工作流中打印关键性信息。
-
-<div align="center">
-
-<img src="docs/images/class-inheritance.png" alt="inheritance-tree" width="200">
-
-class-inheritance
-
-</div>
 
 ## ⚙️ 安装
 
@@ -54,19 +50,23 @@ pnpm add @kabeep/exception
 
 [用例](example/default.ts)
 
+![Plain-text-or-Error-object](docs/images/Plain-text-or-Error-object.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
-// 纯文本
-throw new Exception('example');
+// Plain text
+throw new Exception('Argument example');
 
-// or 错误对象
-throw new Exception(new Error('example'));
+// or Error object
+throw new Exception(new Error('Argument example'));
 ```
 
 ### 在异步中使用
 
 [用例](example/promise.ts)
+
+![Using-in-Asynchronous-Contexts](docs/images/Using-in-Asynchronous-Contexts.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -82,11 +82,13 @@ import Exception from '@kabeep/exception';
 
 [用例](example/stylish.ts)
 
+![Custom-Styles](docs/images/Custom-Styles.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
-// Use custom style with chalk color, hex and rgb
-const stylish = ['51,51,51', 'bg:#f56c6c']
+// Use custom style with hex or rgb
+const stylish = '(51,51,51).bg#f56c6c';
 
 console.log(
     new Exception('Stylish example', stylish)
@@ -97,36 +99,43 @@ console.log(
 
 [用例](example/extends.ts)
 
+![Custom-Exceptions](docs/images/Custom-Exceptions.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
 // > Warning
 class Warning extends Exception {
-    constructor (message: any) {
-        super(message, [' 51,51,51 ', 'bg:#e6a23c']);
+    constructor (message: string | Error) {
+        super(message, '(51,51,51).bg#e6a23c');
     }
 }
 
 const warn = new Warning('Inherited example');
 // Warning: Inherited example [Without style]
 console.log(`${warn}`);
+console.log(warn);
 ```
 
 ### 打印关键信息
 
 [用例](example/extends.ts)
 
+![Print-Key-Information](docs/images/Print-Key-Information.png)
+
 ```javascript
 import Exception from '@kabeep/exception';
 
 // > Info
+const infoStyle = '(51,51,51).bg#409eff';
+
 class Info extends Exception {
-    constructor (message: any) {
-        super(message, ['51,51,51', 'bg:#409eff']);
+    constructor (message) {
+        super(message, infoStyle);
     }
 
     toString () {
-        return ` ${this.palette(['51,51,51', 'bg:#409eff'])(this.name)} ${this.message}`;
+        return ` ${this.palette(infoStyle)(this.padding(this.name))} ${this.message}`;
     }
 }
 
@@ -135,13 +144,15 @@ const tip = new Info('Inherited example');
 console.log(`${tip}`);
 
 // > Success
+const successStyle = '(51,51,51).bg#67c23a';
+
 class Success extends Exception {
-    constructor (message: any) {
-        super(message, ['51,51,51', 'bg:#67c23a']);
+    constructor (message) {
+        super(message, successStyle);
     }
 
     toString () {
-        return ` ${this.palette(['51,51,51', 'bg:#67c23a'])(this.name)} ${this.message}`;
+        return ` ${this.palette(successStyle)(this.padding(this.name))} ${this.message}`;
     }
 }
 
@@ -149,6 +160,20 @@ const pass = new Success('Inherited example');
 // Without stack
 console.log(pass.toString());
 ```
+
+## 支持的颜色
+
+- [修饰符](https://github.com/chalk/chalk#modifiers)
+- [颜色](https://github.com/chalk/chalk#colors)
+- [背景颜色](https://github.com/chalk/chalk#background-colors)
+- [十六进制数字表示法](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet)
+- [三原色光模式](https://en.wikipedia.org/wiki/RGB_color_model)
+- [CSS 关键字](https://www.w3.org/wiki/CSS/Properties/color/keywords)
+
+## 关联库
+
+- [chalk](https://github.com/chalk/chalk) - 终端字符串样式
+- [chalk-pipe](https://github.com/LitoMore/chalk-pipe) - 创建粉笔风格方案与更简单的风格字符串
 
 ## 🤝 贡献
 

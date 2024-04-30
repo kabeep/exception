@@ -1,6 +1,6 @@
 import { basename } from 'node:path';
 import process from 'node:process';
-import type { ChalkStyle, TraceOption } from '../shared/index.js';
+import type { TraceOption } from '../shared/index.js';
 import TraceError from './TraceError.js';
 
 /**
@@ -13,9 +13,9 @@ export default class PrintError extends TraceError {
      * Constructs a new PrintError instance.
      * @constructor
      * @param {(string | Error)} message - The error message or an Error object.
-     * @param {(ChalkStyle | ChalkStyle[])} styles - The styles to apply to the error message.
+     * @param {string} styles - The styles to apply to the error message.
      */
-    constructor(message: string | Error, styles: ChalkStyle | ChalkStyle[]) {
+    constructor(message: string | Error, styles?: string) {
         super(message);
 
         const track = this.trace();
@@ -30,13 +30,14 @@ export default class PrintError extends TraceError {
     /**
      * Creates the opening part of the error stack trace.
      * @private
+     * @param {number} [defaultLength] - The default length to use if the title length is not provided.
      * @returns {string} The opening part of the error stack trace.
      */
-    private opening() {
+    private opening(defaultLength?: number) {
         const title = ` ${this.message} `;
         const { length } = title;
 
-        const width = this.calc(length + 2);
+        const width = this.calc((defaultLength ?? length) + 2);
 
         const prefix = this.highlight('red', this.divide(Math.floor(width / 2)));
         const suffix = this.highlight('red', this.divide(Math.ceil(width / 2)));
@@ -65,8 +66,7 @@ export default class PrintError extends TraceError {
                 const startIndex = item.address?.indexOf(current);
                 if (typeof startIndex !== 'number' || startIndex === -1) return;
 
-                const shorthandAddress = item.address?.slice(Math.max(0, startIndex));
-                if (!shorthandAddress) return;
+                const shorthandAddress = item.address!.slice(Math.max(0, startIndex));
 
                 const isLatest = index === length - 1;
                 let description = this.palette('gray')(shorthandAddress.replace(current, `(${current})`));
@@ -83,14 +83,15 @@ export default class PrintError extends TraceError {
     /**
      * Creates the closing part of the error stack trace.
      * @private
-     * @param {(ChalkStyle | ChalkStyle[])} styles - The styles to apply to the error name.
+     * @param {string} [styles] - The styles to apply to the error name.
+     * @param {number} [defaultLength] - The default length to use if the title length is not provided.
      * @returns {string} The closing part of the error stack trace.
      */
-    private closing(styles: ChalkStyle | ChalkStyle[]) {
-        const title = ` ${this.name} `;
+    private closing(styles?: string, defaultLength?: number) {
+        const title = this.padding(this.name);
         const { length } = title;
 
-        const width = this.calc(length + 3);
+        const width = this.calc((defaultLength ?? length) + 3);
 
         const prefix = this.highlight('red', this.divide(width));
         const suffix = this.highlight('red', this.divide(1));

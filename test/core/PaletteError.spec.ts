@@ -2,74 +2,60 @@ import chalk from 'chalk';
 import { expect, test } from 'vitest';
 import PaletteError from '../../src/core/PaletteError';
 
-test('PaletteError - should use empty array as default value for undefined styles', () => {
-    const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette(undefined);
-    expect(chalkInstance).toBeDefined();
-});
-
-test('PaletteError - should create PaletteError instance with error message', () => {
+test('PaletteError - should create an instance with correct error message', () => {
     const errorMessage = 'Test error message';
     const error = new PaletteError(errorMessage);
     expect(error.message).toBe(errorMessage);
 });
 
-test('PaletteError - should create PaletteError instance with Error object', () => {
-    const error = new Error('Test error message');
-    const paletteError = new PaletteError(error);
-    expect(paletteError.message).toBe(error.message);
+test('PaletteError - should create an instance with Error object', () => {
+    const errorMessage = 'Test error message';
+    const errorObject = new Error(errorMessage);
+    const error = new PaletteError(errorObject);
+    expect(error.message).toBe(errorMessage);
 });
 
-test('PaletteError - should create chalk instance with valid style', () => {
+test('PaletteError.palette - should return a Chalk instance with specified styles applied', () => {
+    const styles = 'blue.bold.bgRed';
     const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette('red');
-    expect(chalkInstance).toBeDefined();
+    const result = paletteError.palette(styles, chalk);
+    const expected = chalk.blue.bold.bgRed;
+    expect(result).toBe(expected);
 });
 
-test('PaletteError - should create chalk instance with array of valid styles', () => {
+test('PaletteError.palette - should return a Chalk instance with default style if styles parameter is not a string', () => {
     const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette(['bold', 'underline']);
-    expect(chalkInstance).toBeDefined();
+    const result = paletteError.palette(undefined, chalk);
+    const expected = chalk;
+    expect(result).toBe(expected);
 });
 
-test('PaletteError - should create chalk instance with invalid style', () => {
+test('PaletteError.padding - should add padding around the provided content', () => {
+    const content = 'Test content';
     const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette('invalid-style');
-    expect(chalkInstance).toBeDefined();
+    const result = paletteError.padding(content);
+    const expected = ` ${content} `;
+    expect(result).toBe(expected);
 });
 
-test('PaletteError - should create chalk instance with RGB style', () => {
-    const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette('255,0,0');
-    expect(chalkInstance).toBeDefined();
+test('PaletteError - should set correct name property', () => {
+    const errorMessage = 'Test error message';
+    const error = new PaletteError(errorMessage);
+    expect(error.name).toBe('PaletteError');
 });
 
-test('PaletteError - should create chalk instance with background RGB style', () => {
+test('PaletteError.palette - should handle rgb style without chain and return Chalk instance', () => {
+    const styles = '(24, 144, 255)';
     const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette('bg:255,0,0');
-    expect(chalkInstance).toBeDefined();
+    const result = paletteError.palette(styles, undefined);
+    const expected = chalk.rgb(24, 144, 255);
+    expect(result('Test')).toEqual(expected('Test')); // 这里调用返回的函数进行比较
 });
 
-test('PaletteError - should create chalk instance with hexadecimal style', () => {
+test('PaletteError.palette - should handle bgRgb style with chain and return Chalk instance', () => {
+    const styles = 'bg(255, 0, 0)';
     const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette('#f00');
-    expect(chalkInstance).toBeDefined();
-});
-
-test('PaletteError - should create chalk instance with background hexadecimal style', () => {
-    const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette('bg:#FF0000');
-    expect(chalkInstance).toBeDefined();
-});
-
-test('PaletteError - should return undefined for non-string style', () => {
-    const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette(123 as any);
-    expect(chalkInstance).toBe(chalk);
-});
-
-test('PaletteError - should return undefined for array with non-string elements', () => {
-    const paletteError = new PaletteError('');
-    const chalkInstance = paletteError.palette(['bold', undefined]);
-    expect(chalkInstance).toBeDefined();
+    const result = paletteError.palette(styles, chalk);
+    const expected = chalk.bgRgb(255, 0, 0);
+    expect(result('Test')).toEqual(expected('Test')); // 这里调用返回的函数进行比较
 });

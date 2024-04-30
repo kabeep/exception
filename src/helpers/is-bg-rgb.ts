@@ -1,5 +1,7 @@
 function isBgRgb(value: string): value is string {
-    const rgbRegular = /^bg:(?:\d{1,3},){2}\d{1,3}$/;
+    if (!value.startsWith('bg')) return false;
+
+    const rgbRegular = /^bg\((?:\d{1,3},){2}\d{1,3}\)$/;
     const numberRegular = /\d{1,3}/g;
 
     const numberMatch = value.match(numberRegular);

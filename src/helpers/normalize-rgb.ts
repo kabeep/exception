@@ -1,5 +1,5 @@
 function normalizeRgb(color: string, prefix = ''): [number, number, number] {
-    const rgb = color.replace(/\s/g, '').replace(new RegExp(`^${prefix}`), '');
+    const rgb = color.replace(/[\s()]/g, '').replace(new RegExp(`^${prefix}`), '');
 
     const [r, g, b] = rgb.split(',').map(Number);
 

@@ -48,6 +48,8 @@ export default class TraceError extends PaletteError {
      * @returns {TraceOption | undefined} A trace option object, or undefined if parsing fails.
      */
     private parse(text: string): TraceOption | undefined {
+        const original = text;
+
         // Untraceable info
         if (!text.startsWith('at ')) return;
 
@@ -59,7 +61,6 @@ export default class TraceError extends PaletteError {
             return undefined;
         }
 
-        const original = text;
         const isEval = text.startsWith('eval');
         let name: string | undefined;
         let address: string | undefined;
@@ -73,29 +74,24 @@ export default class TraceError extends PaletteError {
         const addressMatch = /\(([^)<>]+)\)(?:,\s<anonymous>:\d+:\d+\))?$/.exec(text);
         if (addressMatch) {
             address = addressMatch[1].trim();
-            name =
-                (isEval ? 'eval' : text.slice(0, Math.max(0, text.length - address.length - 2)).trim()) ||
-                'Promise.<anonymous>';
+            name = isEval ? 'eval' : text.slice(0, Math.max(0, text.length - address.length - 2)).trim();
         } else {
             address = text;
             name = '<anonymous>';
         }
 
         address = normalizePath(address);
-        let remaining = address ?? '';
 
-        const lineMatch = /:(\d+):(\d+)\)?$/.exec(remaining);
+        const lineMatch = /:(\d+):(\d+)\)?$/.exec(address);
         if (lineMatch) {
             line = normalizeNumber(lineMatch[1]);
             col = normalizeNumber(lineMatch[2]);
-            remaining = normalizeTrack(remaining, 0, remaining.length - lineMatch[0].length);
-            filepath = remaining;
+            filepath = normalizeTrack(address, 0, address.length - lineMatch[0].length);
         }
 
         if (filepath) {
             file = basename(filepath);
             directory = dirname(filepath);
-            if (directory === '.') directory = '';
 
             file = normalizePath(file);
             directory = normalizePath(directory);

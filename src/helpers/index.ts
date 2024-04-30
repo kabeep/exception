@@ -1,7 +1,6 @@
-export { default as isBgHex } from './is-bg-hex.js';
 export { default as isBgRgb } from './is-bg-rgb.js';
-export { default as isHex } from './is-bg-hex.js';
-export { default as isRgb } from './is-bg-rgb.js';
+export { default as isNil } from './is-nil.js';
+export { default as isRgb } from './is-rgb.js';
 export { default as isString } from './is-string.js';
 export { default as normalizeNumber } from './normalize-number.js';
 export { default as normalizePath } from './normalize-path.js';
