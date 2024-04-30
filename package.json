@@ -15,7 +15,7 @@
         "coverage": "vitest run --coverage",
         "watch": "tsup --watch",
         "watch:test": "vitest",
-        "build": "tsup"
+        "build": "tsup --dts --treeshake smallest"
     },
     "devDependencies": {
         "@swc/core": "^1.5.0",
