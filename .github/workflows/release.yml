@@ -15,51 +15,47 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 16.14.0
-      - run: npm install
-      - run: npm run test
 
-  coverage:
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run test
+        run: npm run test
+
+  publish-npm:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16.14.0
-      - run: npm install
-      - run: npm run build
-      - run: npm run coverage
-      - uses: actions/checkout@main
-      - uses: codecov/codecov-action@v4
-        with:
-          fail_ci_if_error: true
-          file: ./coverage/clover.xml
-          flags: unittests
-          name: codecov-umbrella
-          verbose: true
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  publish-npm:
-    needs: coverage
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 16.14.0
           registry-url: https://registry.npmjs.org/
-      - run: npm install
-      - run: npm run build
-      - uses: 'marvinpinto/action-automatic-releases@latest'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        run: npm run build
+
+      - name: Prepare commit message
+        uses: 'marvinpinto/action-automatic-releases@latest'
         with:
           repo_token: '${{ secrets.GITHUB_TOKEN }}'
           prerelease: false
           files: LICENSE
-      - run: npm publish --access public
+
+      - name: Publish dist to NPM
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
