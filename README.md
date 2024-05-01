@@ -8,11 +8,12 @@ Exception is a custom error library for Node.js that provides a more flexible an
 
 ---
 
-![nodejs](https://img.shields.io/badge/NodeJS-≥14.x-lightseagreen?logo=powershell)
-![Version](https://img.shields.io/badge/Version-1.0.0-cornflowerblue)
-[![codecov](https://codecov.io/gh/kabeep/exception/graph/badge.svg?token=KZH2CVD2CD)](https://codecov.io/gh/kabeep/exception)
-[![License](https://img.shields.io/badge/License-MIT-slateblue)](LICENSE)
-[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master)
+[![NodeJS](https://img.shields.io/node/v/%40kabeep%2Fexception?color=lightseagreen)](https://nodejs.org/docs/latest/api/)
+[![NPM](https://img.shields.io/npm/v/@kabeep/exception.svg?color=cornflowerblue)](https://www.npmjs.com/package/@kabeep/exception)
+[![License](https://img.shields.io/github/license/kabeep/exception?color=slateblue)](LICENSE)
+[![Codecov](https://img.shields.io/codecov/c/github/kabeep/exception?logo=codecov&color=mediumvioletred)](https://codecov.io/gh/kabeep/exception)
+[![Codacy](https://img.shields.io/codacy/grade/ec3b39338b4648de99fc51366e5bcdaa?logo=codacy&logoColor=dodgerblue&color=dodgerblue)](https://app.codacy.com/gh/kabeep/exception/dashboard)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master)
 
 English | [简体中文](README.zh-CN.md)
 
