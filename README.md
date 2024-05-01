@@ -12,8 +12,11 @@ Exception is a custom error library for Node.js that provides a more flexible an
 ![Version](https://img.shields.io/badge/Version-1.0.0-cornflowerblue)
 [![codecov](https://codecov.io/gh/kabeep/exception/graph/badge.svg?token=KZH2CVD2CD)](https://codecov.io/gh/kabeep/exception)
 [![License](https://img.shields.io/badge/License-MIT-slateblue)](LICENSE)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master)
 
 English | [简体中文](README.zh-CN.md)
+
+![Alt](https://repobeats.axiom.co/api/embed/92224457b32c02414aa34c21a923f17f95019cd4.svg "Repobeats analytics image")
 
 <img src="docs/images/Inheritance-and-prototype-chain.png" alt="inheritance-tree">
 
