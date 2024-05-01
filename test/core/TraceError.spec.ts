@@ -8,24 +8,79 @@ test('trace - should return empty array when stack is empty', () => {
     expect(result).toEqual([]);
 });
 
-test('trace - should return correct trace options array', () => {
-    const stack = `
-            at functionName (example/file.js:123:456)
-            at eval (eval at <anonymous> (example/file.js:789:101112), <anonymous>:1:2)
-            at <anonymous> (example/file.js:131415:16)
-            at Object.<anonymous> (example/file.js:171819:20)
+test('trace - should return correct anonymous trace options array', () => {
+    const traceError = new TraceError('');
+    traceError.stack = `
+            at <anonymous> (example/file.js:1:2)
+            at example/file.js:3:4
+    `;
+    const result = traceError.trace();
+    const expected = [
+        {
+            original: 'at <anonymous> (example/file.js:1:2)',
+            name: '<anonymous>',
+            address: 'example/file.js:1:2',
+            file: 'file.js',
+            line: 1,
+            col: 2,
+            packageName: '[current]',
+        },
+        {
+            original: 'at example/file.js:3:4',
+            name: '<anonymous>',
+            address: 'example/file.js:3:4',
+            file: 'file.js',
+            line: 3,
+            col: 4,
+            packageName: '[current]',
+        },
+    ];
+    expect(result).toEqual(expected);
+});
+
+test('trace - should return correct partial trace options array', () => {
+    const traceError = new TraceError('');
+    traceError.stack = `
+            at example/file.js
+    `;
+    const result = traceError.trace();
+    const expected = [
+        {
+            original: 'at example/file.js',
+            name: '<anonymous>',
+            address: 'example/file.js',
+            file: undefined,
+            line: undefined,
+            col: undefined,
+            packageName: '[current]',
+        },
+    ];
+    expect(result).toEqual(expected);
+});
+
+test('trace - should return correct empty trace options array', () => {
+    const traceError = new TraceError('');
+    traceError.stack = `
             at Module._compile (node:internal/modules/cjs/loader:1256:14)
             at Object.Module._extensions..js (node:internal/modules/cjs/loader:1285:10)
             at Module.load (node:internal/modules/cjs/loader:1100:32)
             at Function.Module._load (node:internal/modules/cjs/loader:962:14)
             at Module.require (node:internal/modules/cjs/loader:1142:19)
             at require (node:internal/modules/cjs/helpers:88:18)
-            at Object.<anonymous> (example/file.js:212223:24)
             at Module._compile (node:internal/modules/cjs/loader:1256:14)
             at Error (<anonymous>)
             at Error (<anonymous>:null:null)
-            at example/file.js:252627:28
-            at example/file.js
+    `;
+    const result = traceError.trace();
+    expect(result).toEqual([]);
+});
+
+test('trace - should return correct trace options array', () => {
+    const stack = `
+            at functionName (example/file.js:123:456)
+            at eval (eval at <anonymous> (example/file.js:789:101112), <anonymous>:1:2)
+            at Object.<anonymous> (example/file.js:171819:20)
+            at Object.<anonymous> (example/file.js:212223:24)
         `;
     const traceError = new TraceError('');
     traceError.stack = stack;
@@ -50,15 +105,6 @@ test('trace - should return correct trace options array', () => {
             packageName: '[current]',
         },
         {
-            original: 'at <anonymous> (example/file.js:131415:16)',
-            name: '<anonymous>',
-            address: 'example/file.js:131415:16',
-            file: 'file.js',
-            line: 131415,
-            col: 16,
-            packageName: '[current]',
-        },
-        {
             original: 'at Object.<anonymous> (example/file.js:171819:20)',
             name: 'Object.<anonymous>',
             address: 'example/file.js:171819:20',
@@ -74,24 +120,6 @@ test('trace - should return correct trace options array', () => {
             file: 'file.js',
             line: 212223,
             col: 24,
-            packageName: '[current]',
-        },
-        {
-            original: 'at example/file.js:252627:28',
-            name: '<anonymous>',
-            address: 'example/file.js:252627:28',
-            file: 'file.js',
-            line: 252627,
-            col: 28,
-            packageName: '[current]',
-        },
-        {
-            original: 'at example/file.js',
-            name: '<anonymous>',
-            address: 'example/file.js',
-            file: undefined,
-            line: undefined,
-            col: undefined,
             packageName: '[current]',
         },
     ];
