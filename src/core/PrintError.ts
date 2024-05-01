@@ -1,7 +1,7 @@
+import type { ChalkInstance } from 'chalk';
 import { basename } from 'node:path';
 import { cwd, stdout } from 'node:process';
 import type { WriteStream } from 'node:tty';
-import type { ChalkInstance } from 'chalk';
 import type { TraceOption } from '../shared/index.js';
 import TraceError from './TraceError.js';
 
@@ -59,8 +59,7 @@ export default class PrintError extends TraceError {
      * @returns {string} The formatted trace information.
      */
     private print(track: TraceOption[]) {
-        const root: string = cwd();
-        const baseRoot: string = basename(cwd());
+        const root: string = basename(cwd());
         const { length } = track;
 
         return track
@@ -69,7 +68,7 @@ export default class PrintError extends TraceError {
                 const title = titleStylish(`${item.file}:${item.line}`);
                 const summary = `- ${title} ${item.name}`;
 
-                const current = item.packageName.replace('[current]', baseRoot);
+                const current = item.packageName.replace('[current]', root);
                 const startIndex = item.address.indexOf(current);
                 const shorthandAddress = item.address.slice(Math.max(0, startIndex));
 

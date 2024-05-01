@@ -41,7 +41,7 @@ export default class PaletteError extends Error {
                 const _isBgRgb = isBgRgb(style);
                 if (!_isRgb && !_isBgRgb) return style;
 
-                const rgb = normalizeRgb(style, 'bg');
+                const rgb: [number, number, number] = normalizeRgb(style, 'bg');
                 chain = _isRgb ? chain.rgb(...rgb) : chain.bgRgb(...rgb);
 
                 return undefined;
