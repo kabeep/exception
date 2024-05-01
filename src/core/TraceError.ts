@@ -77,7 +77,7 @@ export default class TraceError extends PaletteError {
             name = isEval ? 'eval' : text.slice(0, Math.max(0, text.length - address.length - 2)).trim();
         } else {
             address = text;
-            name = '<anonymous>';
+            name = 'anonymous';
         }
 
         address = normalizePath(address);

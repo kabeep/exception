@@ -2,10 +2,9 @@ import chalk from 'chalk';
 import { expect, test } from 'vitest';
 import PaletteError from '../../src/core/PaletteError';
 
-test('PaletteError - should create an instance with correct error message', () => {
-    const errorMessage = 'Test error message';
-    const error = new PaletteError(errorMessage);
-    expect(error.message).toBe(errorMessage);
+test('PaletteError - should create an instance with uncorrected error message', () => {
+    const error = new PaletteError(undefined);
+    expect(error.message).toBe('');
 });
 
 test('PaletteError - should create an instance with Error object', () => {

@@ -1,5 +1,6 @@
 import { basename } from 'node:path';
 import process from 'node:process';
+import { ChalkInstance } from 'chalk';
 import type { TraceOption } from '../shared/index.js';
 import TraceError from './TraceError.js';
 
@@ -57,8 +58,6 @@ export default class PrintError extends TraceError {
 
         return track
             .map((item, index) => {
-                if (!item) return;
-
                 const title = this.palette('yellowBright')(`${item.file}:${item.line}`);
                 const summary = `- ${title} ${item.name}`;
 

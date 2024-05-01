@@ -68,7 +68,6 @@ test('PrintError.print - should generate correct trace information', () => {
             name: 'anotherFunction',
             packageName: '[current]',
         },
-        undefined,
     ];
 
     const expected =

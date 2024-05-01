@@ -14,7 +14,7 @@ export default class PaletteError extends Error {
      * @param {(string | Error)} message - The error message or an Error object.
      */
     constructor(message: string | Error) {
-        super((message as Error)?.message || (message as string));
+        super(isString(message) ? message : message?.message || '');
 
         /**
          * The name of the error.
@@ -44,8 +44,7 @@ export default class PaletteError extends Error {
                 if (isNil(chain)) chain = chalk;
 
                 const rgb = normalizeRgb(style, 'bg');
-                const operator = _isBgRgb ? 'bgRgb' : 'rgb';
-                chain = chain[operator](...rgb);
+                chain = _isRgb ? chain.rgb(...rgb) : chain.bgRgb(...rgb);
 
                 return undefined;
             })

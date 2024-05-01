@@ -27,7 +27,7 @@ test('trace - should return correct anonymous trace options array', () => {
         },
         {
             original: 'at example/file.js:3:4',
-            name: '<anonymous>',
+            name: 'anonymous',
             address: 'example/file.js:3:4',
             file: 'file.js',
             line: 3,
@@ -47,7 +47,7 @@ test('trace - should return correct partial trace options array', () => {
     const expected = [
         {
             original: 'at example/file.js',
-            name: '<anonymous>',
+            name: 'anonymous',
             address: 'example/file.js',
             file: undefined,
             line: undefined,
