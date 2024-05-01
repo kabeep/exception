@@ -12,7 +12,7 @@ on:
       - 'test/**'
 
 jobs:
-  build:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
