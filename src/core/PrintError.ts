@@ -1,6 +1,7 @@
 import { basename } from 'node:path';
-import process from 'node:process';
-import { ChalkInstance } from 'chalk';
+import { cwd, stdout } from 'node:process';
+import type { WriteStream } from 'node:tty';
+import type { ChalkInstance } from 'chalk';
 import type { TraceOption } from '../shared/index.js';
 import TraceError from './TraceError.js';
 
@@ -38,10 +39,15 @@ export default class PrintError extends TraceError {
         const title = ` ${this.message} `;
         const { length } = title;
 
-        const width = this.calc((defaultLength ?? length) + 2);
+        const width = this.calc((defaultLength ?? length) + 2) / 2;
 
-        const prefix = this.highlight('red', this.divide(Math.floor(width / 2)));
-        const suffix = this.highlight('red', this.divide(Math.ceil(width / 2)));
+        const prefixLength = Math.floor(width);
+        const prefixString = this.divide(prefixLength);
+        const prefix = this.highlight('red', prefixString);
+
+        const suffixLength = Math.ceil(width);
+        const suffixString = this.divide(suffixLength);
+        const suffix = this.highlight('red', suffixString);
 
         return `${prefix}${this.highlight('cyanBright', title)}${suffix}]`;
     }
@@ -53,22 +59,24 @@ export default class PrintError extends TraceError {
      * @returns {string} The formatted trace information.
      */
     private print(track: TraceOption[]) {
-        const root = process.cwd();
+        const root: string = cwd();
+        const baseRoot: string = basename(cwd());
         const { length } = track;
 
         return track
             .map((item, index) => {
-                const title = this.palette('yellowBright')(`${item.file}:${item.line}`);
+                const titleStylish: ChalkInstance = this.palette('yellowBright');
+                const title = titleStylish(`${item.file}:${item.line}`);
                 const summary = `- ${title} ${item.name}`;
 
-                const current = item.packageName.replace('[current]', basename(root));
-                const startIndex = item.address?.indexOf(current);
-                if (typeof startIndex !== 'number' || startIndex === -1) return;
+                const current = item.packageName.replace('[current]', baseRoot);
+                const startIndex = item.address.indexOf(current);
+                const shorthandAddress = item.address.slice(Math.max(0, startIndex));
 
-                const shorthandAddress = item.address!.slice(Math.max(0, startIndex));
+                const descStylish: ChalkInstance = this.palette('gray');
+                let description = descStylish(shorthandAddress.replace(current, `(${current})`));
 
                 const isLatest = index === length - 1;
-                let description = this.palette('gray')(shorthandAddress.replace(current, `(${current})`));
                 if (!isLatest) {
                     description += '\n';
                 }
@@ -95,7 +103,8 @@ export default class PrintError extends TraceError {
         const prefix = this.highlight('red', this.divide(width));
         const suffix = this.highlight('red', this.divide(1));
 
-        return `[${prefix}${this.palette(styles)(title)}${suffix}`;
+        const stylish: ChalkInstance = this.palette(styles);
+        return `[${prefix}${stylish(title)}${suffix}`;
     }
 
     /**
@@ -106,8 +115,9 @@ export default class PrintError extends TraceError {
      * @returns {number} The calculated width.
      */
     private calc(length: number, defaultLength = 32) {
-        const clientWidth = (process.stdout?.columns || defaultLength) - length;
+        const columns: number | undefined = (stdout as (WriteStream & { fd: 1 }) | undefined)?.columns;
 
+        const clientWidth = (columns ?? defaultLength) - length;
         return clientWidth <= 0 ? defaultLength : clientWidth;
     }
 
@@ -119,7 +129,8 @@ export default class PrintError extends TraceError {
      * @returns {string} The highlighted content.
      */
     private highlight(color: string, content: string) {
-        return this.palette(color)(content);
+        const stylish: ChalkInstance = this.palette(color);
+        return stylish(content);
     }
 
     /**
@@ -130,6 +141,7 @@ export default class PrintError extends TraceError {
      * @returns {string} The string filled with the separator character.
      */
     private divide(length: number, separator = '-') {
-        return Array.from({ length }).fill(separator).join('');
+        const ls: string[] = Array.from({ length }).map(() => separator);
+        return ls.join('');
     }
 }

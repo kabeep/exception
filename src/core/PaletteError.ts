@@ -1,6 +1,6 @@
 import chalk, { type ChalkInstance } from 'chalk';
 import chalkPipe from 'chalk-pipe';
-import { isBgRgb, isNil, isRgb, isString, normalizeRgb } from '../helpers/index.js';
+import { isBgRgb, isRgb, isString, normalizeRgb } from '../helpers/index.js';
 
 /**
  * A palette error.
@@ -29,7 +29,7 @@ export default class PaletteError extends Error {
      * @param {ChalkInstance} chain - The Chalk instance to chain with.
      * @returns {ChalkInstance} A Chalk instance with the specified styles.
      */
-    palette(styles?: string, chain?: ChalkInstance): ChalkInstance {
+    palette(styles?: string, chain: ChalkInstance = chalk): ChalkInstance {
         if (!isString(styles)) {
             styles = '';
         }
@@ -40,8 +40,6 @@ export default class PaletteError extends Error {
                 const _isRgb = isRgb(style);
                 const _isBgRgb = isBgRgb(style);
                 if (!_isRgb && !_isBgRgb) return style;
-
-                if (isNil(chain)) chain = chalk;
 
                 const rgb = normalizeRgb(style, 'bg');
                 chain = _isRgb ? chain.rgb(...rgb) : chain.bgRgb(...rgb);

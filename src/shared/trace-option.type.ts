@@ -1,9 +1,9 @@
-export type TraceOption = {
+export interface TraceOption {
     original: string;
-    name: string | undefined;
-    address: string | undefined;
+    name: string;
+    address: string;
     file: string | undefined;
     line: number | undefined;
     col: number | undefined;
     packageName: string;
-};
+}

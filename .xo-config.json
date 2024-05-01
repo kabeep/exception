@@ -9,7 +9,7 @@
     "rules": {
         "unicorn/filename-case": "off",
         "unicorn/prefer-string-replace-all": "off",
-        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/consistent-type-definitions": "off",
         "import/extensions": [
             "error",
             "ignorePackages",

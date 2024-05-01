@@ -47,32 +47,32 @@ test('PrintError.calc - should return default length when terminal width is mini
 
 test('PrintError.print - should generate correct trace information', () => {
     const printError = new PrintError('');
-    const track = [
+    const track: TraceOption[] = [
         {
+            original: 'at exampleFunction (/path/to/example-package/example.js:10:1)',
             file: 'example.js',
             line: 10,
+            col: 1,
             name: 'exampleFunction',
             packageName: 'example-package',
             address: '/path/to/example-package/example.js',
         },
         {
+            original: 'at anotherFunction (/path/to/current/another.js:20:2)',
             file: 'another.js',
             line: 20,
+            col: 2,
             name: 'anotherFunction',
             packageName: '[current]',
             address: '/path/to/current/another.js',
-        },
-        {
-            file: 'another.js',
-            line: 20,
-            name: 'anotherFunction',
-            packageName: '[current]',
         },
     ];
 
     const expected =
         `- ${printError.palette('yellowBright')('example.js:10')} exampleFunction\n` +
-        `  ${printError.palette('gray')('(example-package)/example.js')}\n`;
+        `  ${printError.palette('gray')('(example-package)/example.js')}\n\n` +
+        `- ${printError.palette('yellowBright')('another.js:20')} anotherFunction\n` +
+        `  ${printError.palette('gray')('/path/to/current/another.js')}`;
 
     const result = printError['print'](track as TraceOption[]);
     expect(result).toBe(expected);
