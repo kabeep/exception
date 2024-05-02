@@ -17,7 +17,7 @@ export default class PaletteError extends Error {
         super(isString(message) ? message : message?.message || '');
 
         /**
-         * The name of the error.
+         * The name of the CustomException.
          * @type {string}
          */
         this.name = this.constructor.name;
@@ -58,5 +58,21 @@ export default class PaletteError extends Error {
      */
     padding(content: string) {
         return ` ${content} `;
+    }
+
+    /**
+     * Generates a formatted message with optional styles.
+     * @param {string} styles - The styles to apply.
+     * @returns {string} The formatted message.
+     */
+    info(styles?: string) {
+        if (!isString(styles)) {
+            styles = '';
+        }
+
+        const title = this.padding(this.name);
+        const stylish: ChalkInstance = this.palette(styles);
+
+        return ` ${stylish(title)} ${this.message}`;
     }
 }
