@@ -6,14 +6,14 @@ test('PrintError - should create an instance with correct message and stack', ()
     const errorMessage = 'Test error message';
     const error = new PrintError(errorMessage);
     expect(error.message).toBe(errorMessage);
-    expect(error.stack).toContain(errorMessage); // 栈中应包含错误消息
+    expect(error.stack).toContain(errorMessage);
 });
 
 test('PrintError.opening - should generate correct opening part of error stack trace', () => {
     const errorMessage = 'Test error message';
     const printError = new PrintError(errorMessage);
-    const opening = printError['opening'](); // 使用私有方法需要使用字符串形式的键名
-    expect(opening).toContain(errorMessage); // 开头部分应包含错误消息
+    const opening = printError['opening']();
+    expect(opening).toContain(errorMessage);
 });
 
 test('PrintError.opening - should generate correct opening part of error stack trace', () => {

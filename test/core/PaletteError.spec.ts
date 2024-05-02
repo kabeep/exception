@@ -48,7 +48,7 @@ test('PaletteError.palette - should handle rgb style without chain and return Ch
     const paletteError = new PaletteError('');
     const result = paletteError.palette(styles, undefined);
     const expected = chalk.rgb(24, 144, 255);
-    expect(result('Test')).toEqual(expected('Test')); // 这里调用返回的函数进行比较
+    expect(result('Test')).toEqual(expected('Test'));
 });
 
 test('PaletteError.palette - should handle bgRgb style with chain and return Chalk instance', () => {
@@ -56,5 +56,38 @@ test('PaletteError.palette - should handle bgRgb style with chain and return Cha
     const paletteError = new PaletteError('');
     const result = paletteError.palette(styles, chalk);
     const expected = chalk.bgRgb(255, 0, 0);
-    expect(result('Test')).toEqual(expected('Test')); // 这里调用返回的函数进行比较
+    expect(result('Test')).toEqual(expected('Test'));
+});
+
+test('PaletteError.info - should return formatted message without styles', () => {
+    const errorMessage = 'Test error message';
+    const error = new PaletteError(errorMessage);
+    const result = error.info();
+    const expected = `  ${error.name}  ${errorMessage}`;
+    expect(result).toBe(expected);
+});
+
+test('PaletteError.info - should return formatted message with styles', () => {
+    const errorMessage = 'Test error message';
+    const styles = 'red.bold.underline';
+    const error = new PaletteError(errorMessage);
+    const result = error.info(styles);
+    const expected = ` ${chalk.red.bold.underline(` ${error.name} `)} ${errorMessage}`;
+    expect(result).toBe(expected);
+});
+
+test('PaletteError.info - should handle undefined styles', () => {
+    const errorMessage = 'Test error message';
+    const error = new PaletteError(errorMessage);
+    const result = error.info(undefined);
+    const expected = `  ${error.name}  ${errorMessage}`;
+    expect(result).toBe(expected);
+});
+
+test('PaletteError.info - should handle empty styles', () => {
+    const errorMessage = 'Test error message';
+    const error = new PaletteError(errorMessage);
+    const result = error.info('');
+    const expected = `  ${error.name}  ${errorMessage}`;
+    expect(result).toBe(expected);
 });
