@@ -139,7 +139,7 @@ class Info extends Exception {
     }
 
     toString () {
-        return ` ${this.palette(infoStyle)(this.padding(this.name))} ${this.message}`;
+        return this.info(styles);
     }
 }
 
@@ -156,7 +156,7 @@ class Success extends Exception {
     }
 
     toString () {
-        return ` ${this.palette(successStyle)(this.padding(this.name))} ${this.message}`;
+        return this.info(styles);
     }
 }
 
