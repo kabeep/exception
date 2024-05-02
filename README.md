@@ -9,8 +9,8 @@ Exception is a custom error library for Node.js that provides a more flexible an
 ---
 
 [![NodeJS](https://img.shields.io/node/v/%40kabeep%2Fexception?color=lightseagreen)](https://nodejs.org/docs/latest/api/)
-[![NPM](https://img.shields.io/npm/v/@kabeep/exception.svg?color=cornflowerblue)](https://www.npmjs.com/package/@kabeep/exception)
 [![License](https://img.shields.io/github/license/kabeep/exception?color=slateblue)](LICENSE)
+[![NPM](https://img.shields.io/npm/d18m/%40kabeep%2Fexception?color=cornflowerblue)](https://www.npmjs.com/package/@kabeep/exception)
 [![Codecov](https://img.shields.io/codecov/c/github/kabeep/exception?logo=codecov&color=mediumvioletred)](https://codecov.io/gh/kabeep/exception)
 [![Codacy](https://img.shields.io/codacy/grade/ec3b39338b4648de99fc51366e5bcdaa?logo=codacy&logoColor=dodgerblue&color=dodgerblue)](https://app.codacy.com/gh/kabeep/exception/dashboard)
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master)
@@ -144,7 +144,7 @@ class Info extends Exception {
     }
 
     toString () {
-        return ` ${this.palette(infoStyle)(this.padding(this.name))} ${this.message}`;
+        return this.info(styles);
     }
 }
 
@@ -161,7 +161,7 @@ class Success extends Exception {
     }
 
     toString () {
-        return ` ${this.palette(successStyle)(this.padding(this.name))} ${this.message}`;
+        return this.info(styles);
     }
 }
 
@@ -170,7 +170,7 @@ const pass = new Success('Inherited example');
 console.log(pass.toString());
 ```
 
-## Supported styles
+## 🎨 Supported styles
 
 - [Modifiers](https://github.com/chalk/chalk#modifiers)
 
@@ -208,7 +208,7 @@ console.log(pass.toString());
 "cyan.bgDarkblue"
 ```
 
-## Related
+## 🔗 Related
 
 - [chalk](https://github.com/chalk/chalk) - Terminal string styling done right
 - [chalk-pipe](https://github.com/LitoMore/chalk-pipe) - Create chalk style schemes with simpler style strings

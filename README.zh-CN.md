@@ -7,8 +7,8 @@ Exception 是一个用于 Node.js 的自定义错误库，它提供了一种更�
 ---
 
 [![NodeJS](https://img.shields.io/node/v/%40kabeep%2Fexception?color=lightseagreen)](https://nodejs.org/docs/latest/api/)
-[![NPM](https://img.shields.io/npm/v/@kabeep/exception.svg?color=cornflowerblue)](https://www.npmjs.com/package/@kabeep/exception)
 [![License](https://img.shields.io/github/license/kabeep/exception?color=slateblue)](LICENSE)
+[![NPM](https://img.shields.io/npm/d18m/%40kabeep%2Fexception?color=cornflowerblue)](https://www.npmjs.com/package/@kabeep/exception)
 [![Codecov](https://img.shields.io/codecov/c/github/kabeep/exception?logo=codecov&color=mediumvioletred)](https://codecov.io/gh/kabeep/exception)
 [![Codacy](https://img.shields.io/codacy/grade/ec3b39338b4648de99fc51366e5bcdaa?logo=codacy&logoColor=dodgerblue&color=dodgerblue)](https://app.codacy.com/gh/kabeep/exception/dashboard)
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/circleci/Qh23T2Zgw4Fy4V8uvKaymp/JeKeBwNTskLytiuiJPdQ2R/tree/master)
@@ -165,7 +165,7 @@ const pass = new Success('Inherited example');
 console.log(pass.toString());
 ```
 
-## 支持的颜色
+## 🎨 支持的颜色
 
 - [修饰符](https://github.com/chalk/chalk#modifiers)
 - [颜色](https://github.com/chalk/chalk#colors)
@@ -174,7 +174,7 @@ console.log(pass.toString());
 - [三原色光模式](https://en.wikipedia.org/wiki/RGB_color_model)
 - [CSS 关键字](https://www.w3.org/wiki/CSS/Properties/color/keywords)
 
-## 关联库
+## 🔗 关联库
 
 - [chalk](https://github.com/chalk/chalk) - 终端字符串样式
 - [chalk-pipe](https://github.com/LitoMore/chalk-pipe) - 创建粉笔风格方案与更简单的风格字符串
