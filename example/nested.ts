@@ -16,7 +16,7 @@ function run() {
     }
 }
 
-// [--------------------------------- Nested example ----------------------------------]
+// [--------------------------------- Nested example ---------------------------------]
 //
 // - nested.ts:4 Object.error [as init]
 //   (exception)/example/nested.ts:4:11
@@ -24,14 +24,8 @@ function run() {
 // - nested.ts:13 run
 //   (exception)/example/nested.ts:13:15
 //
-// - nested.ts:19 Object.<anonymous>
-//   (exception)/example/nested.ts:19:1
+// - nested.ts:37 anonymous
+//   (exception)/example/nested.ts:37:1
 //
-// - index.ts:1618 Module.m._compile
-//   (ts-node)/src/index.ts:1618:23
-//
-// - index.ts:1621 Object.require.extensions.<computed> [as .ts]
-//   (ts-node)/src/index.ts:1621:12
-//
-// [----------------------------------------------------------------------- Exception -]
+// [---------------------------------------------------------------------- Exception -]
 run();

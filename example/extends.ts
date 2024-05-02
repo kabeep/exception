@@ -1,12 +1,14 @@
 import Exception from '../src/index.js';
 
+const styles = 'black.bg#e6a23c';
+
 class CustomException extends Exception {
     constructor(message: any) {
-        super(message, ['black', 'bg:#e6a23c']);
+        super(message, styles);
     }
 
     toString() {
-        return `${this.palette(['black', 'bg:#e6a23c'])(` ${this.name} `)} ${this.message}`;
+        return this.info(styles);
     }
 }
 
