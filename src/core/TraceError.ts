@@ -1,5 +1,5 @@
 import { basename, dirname } from 'node:path';
-import { normalizeNumber, normalizePath, normalizeTrack } from '../helpers/index.js';
+import { getAddress, normalizeNumber, normalizePath, normalizeTrack } from '../helpers/index.js';
 import type { TraceOption } from '../shared/index.js';
 import PaletteError from './PaletteError.js';
 
@@ -71,9 +71,9 @@ export default class TraceError extends PaletteError {
         let col: number | undefined;
         let packageName = '[current]';
 
-        const addressMatch = /\(([^)<>]+)\)(?:,\s<anonymous>:\d+:\d+\))?$/.exec(text);
+        const addressMatch = getAddress(text);
         if (addressMatch) {
-            address = addressMatch[1].trim();
+            address = addressMatch.trim();
             name = isEval ? 'eval' : text.slice(0, Math.max(0, text.length - address.length - 2)).trim();
         } else {
             address = text;
