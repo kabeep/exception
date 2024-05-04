@@ -1,5 +1,3 @@
-# expection
-
 <div align="center">
 
 <img src="docs/images/logo-dark.png" alt="logo-dark">
