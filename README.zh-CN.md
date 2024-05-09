@@ -168,11 +168,40 @@ console.log(pass.toString());
 ## 🎨 支持的颜色
 
 - [修饰符](https://github.com/chalk/chalk#modifiers)
+
+```json
+"dim.italic.underline"
+```
+
 - [颜色](https://github.com/chalk/chalk#colors)
+
+```json
+"magenta.cyan"
+```
+
 - [背景颜色](https://github.com/chalk/chalk#background-colors)
+
+```json
+"bgMagenta.bgCyan"
+```
+
 - [十六进制数字表示法](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet)
+
+```json
+"#fff.bg#333333"
+```
+
 - [三原色光模式](https://en.wikipedia.org/wiki/RGB_color_model)
+
+```json
+"(51,51,51).bg(24,124,255)"
+```
+
 - [CSS 关键字](https://www.w3.org/wiki/CSS/Properties/color/keywords)
+
+```json
+"cyan.bgDarkblue"
+```
 
 ## 🔗 关联库
 
