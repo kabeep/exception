@@ -4,8 +4,6 @@
 
 🖨️ A Node.js Custom Error Library that print error stack without clutter.
 
----
-
 [![NodeJS](https://img.shields.io/node/v/%40kabeep%2Fexception?color=lightseagreen)](https://nodejs.org/docs/latest/api/)
 [![License](https://img.shields.io/github/license/kabeep/exception?color=slateblue)](LICENSE)
 [![NPM](https://img.shields.io/npm/d18m/%40kabeep%2Fexception?color=cornflowerblue)](https://www.npmjs.com/package/@kabeep/exception)

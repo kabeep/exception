@@ -4,8 +4,6 @@
 
 🖨️ Node.js 自定义错误库，可以清晰地打印错误堆栈。
 
----
-
 [![NodeJS](https://img.shields.io/node/v/%40kabeep%2Fexception?color=lightseagreen)](https://nodejs.org/docs/latest/api/)
 [![License](https://img.shields.io/github/license/kabeep/exception?color=slateblue)](LICENSE)
 [![NPM](https://img.shields.io/npm/d18m/%40kabeep%2Fexception?color=cornflowerblue)](https://www.npmjs.com/package/@kabeep/exception)
