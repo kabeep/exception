@@ -1,8 +1,8 @@
 <div align="center">
 
-<img width="814" src="assets/logo-dark.png" alt="logo-dark">
+<img width="512" src="assets/logo-dark.png" alt="logo-dark">
 
-Exception 是一个用于 Node.js 的自定义错误库，它提供了一种更加灵活和可定制的错误处理方式。
+🖨️ Node.js 自定义错误库，可以清晰地打印错误堆栈。
 
 ---
 

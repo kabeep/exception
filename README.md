@@ -1,8 +1,8 @@
 <div align="center">
 
-<img width="814" src="assets/logo-dark.png" alt="logo-dark">
+<img width="512" src="assets/logo-dark.png" alt="logo-dark">
 
-Exception is a custom error library for Node.js that provides a more flexible and customizable way of handling errors.
+🖨️ A Node.js Custom Error Library that print error stack without clutter.
 
 ---
 
