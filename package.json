@@ -2,7 +2,7 @@
     "name": "@kabeep/exception",
     "version": "1.3.0",
     "type": "module",
-    "description": "Exception is a custom error library for Node.js that provides a more flexible and customizable way of handling errors.",
+    "description": "A Node.js Custom Error Library that print error stack without clutter.",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "files": [
@@ -41,7 +41,7 @@
         "xo": "^0.58.0"
     },
     "author": "Zhang Zixin (kabeep)",
-    "homepage": "https://github.com/kabeep/exception#readme",
+    "homepage": "https://kabeep.github.io/exception",
     "repository": "git@github.com:kabeep/exception.git",
     "bugs": "https://github.com/kabeep/exception/issue",
     "keywords": [
