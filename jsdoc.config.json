@@ -15,14 +15,13 @@
         "excludePattern": "(node_modules/|docs)"
     },
     "plugins": [
-        "plugins/markdown"
+        "plugins/markdown",
+        "plugins/summarize"
     ],
     "opts": {
         "template": "node_modules/docdash/",
-        "encoding": "utf8",
         "destination": "docs/",
         "recurse": true,
-        "private": true,
         "verbose": true
     },
     "templates": {
