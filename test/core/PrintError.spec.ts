@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import PrintError from '../../src/core/PrintError';
-import type { TraceOption } from '../../src/shared';
+import PrintError from '../../src/core/PrintError.js';
+import type { TraceOption } from '../../src/shared/index.js';
 
 test('PrintError - should create an instance with correct message and stack', () => {
     const errorMessage = 'Test error message';
@@ -36,13 +36,6 @@ test('PrintError.closing - should generate correct closing part of error stack t
     expect(closing).toContain(printError.constructor.name);
     expect(closing).toContain(expectedPrefix);
     expect(closing).toContain(expectedSuffix);
-});
-
-test('PrintError.calc - should return default length when terminal width is minimal', () => {
-    const printError = new PrintError('');
-    process.stdout.columns = 1;
-    const width = printError['calc'](12);
-    expect(width).toBe(32);
 });
 
 test('PrintError.print - should generate correct trace information', () => {

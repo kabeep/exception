@@ -1,6 +1,7 @@
 import { basename } from 'node:path';
 import { cwd, stdout } from 'node:process';
 import type { WriteStream } from 'node:tty';
+import { eastAsianWidth } from 'get-east-asian-width';
 import type { ChalkInstance } from 'chalk';
 import type { TraceOption } from '../shared/index.js';
 import TraceError from './TraceError.js';
@@ -35,21 +36,32 @@ export default class PrintError extends TraceError {
      * @param {number} [defaultLength] - The default length to use if the title length is not provided.
      * @returns {string} The opening part of the error stack trace.
      */
-    private opening(defaultLength?: number) {
-        const title = ` ${this.message} `;
-        const { length } = title;
+    private opening(defaultLength?: number): string {
+        let title = this.padding(this.message);
+        const length = this.length(title);
 
-        const width = this.calc((defaultLength ?? length) + 2) / 2;
+        const width = this.calc((defaultLength ?? length) + 2);
+        let halfWidth = Math.floor(width / 2);
+        const isAlternate = halfWidth <= 0;
+        if (isAlternate) {
+            title = this.padding('Error Message');
+            halfWidth = Math.floor((width + length - 15) / 2);
+        }
 
-        const prefixLength = Math.floor(width);
-        const prefixString = this.divide(prefixLength);
+        const prefixString = this.divide(halfWidth);
         const prefix = this.highlight('red', prefixString);
 
-        const suffixLength = Math.ceil(width);
-        const suffixString = this.divide(suffixLength);
+        const suffixString = this.divide(halfWidth);
         const suffix = this.highlight('red', suffixString);
 
-        return `${prefix}${this.highlight('cyanBright', title)}${suffix}]`;
+        let output = `${prefix}${this.highlight('cyanBright', title)}${suffix}]`;
+        if (isAlternate) {
+            output += `\n${this.message}`;
+            const divider = this.divide((this.column() ?? 32) - 2);
+            output += `\n${this.highlight('grey', `[${divider}]`)}`;
+        }
+
+        return output;
     }
 
     /**
@@ -58,7 +70,7 @@ export default class PrintError extends TraceError {
      * @param {TraceOption[]} track - The array of trace options.
      * @returns {string} The formatted trace information.
      */
-    private print(track: TraceOption[]) {
+    private print(track: TraceOption[]): string {
         const root: string = basename(cwd());
         const { length } = track;
 
@@ -93,11 +105,15 @@ export default class PrintError extends TraceError {
      * @param {number} [defaultLength] - The default length to use if the title length is not provided.
      * @returns {string} The closing part of the error stack trace.
      */
-    private closing(styles?: string, defaultLength?: number) {
-        const title = this.padding(this.name);
-        const { length } = title;
+    private closing(styles?: string, defaultLength?: number): string {
+        let title = this.padding(this.name);
+        const length = this.length(title);
 
-        const width = this.calc((defaultLength ?? length) + 3);
+        let width = this.calc((defaultLength ?? length) + 3);
+        if (width <= 0) {
+            title = this.padding('Exception');
+            width += length - 9;
+        }
 
         const prefix = this.highlight('red', this.divide(width));
         const suffix = this.highlight('red', this.divide(1));
@@ -107,17 +123,43 @@ export default class PrintError extends TraceError {
     }
 
     /**
+     * Calculates the display length of a string, considering East Asian Width rules.
+     * @private
+     * @param {string} content - The string content whose display length is to be calculated.
+     * @returns {number} The total display length of the string, accounting for wide and narrow characters.
+     */
+    private length(content: string): number {
+        let result = 0;
+        for (const char of content) {
+            const codePoint = char.codePointAt(0);
+            if (typeof codePoint !== 'number') continue;
+
+            result += eastAsianWidth(codePoint);
+        }
+
+        return result;
+    }
+
+    /**
      * Calculates the width of the terminal.
      * @private
      * @param {number} length - The length of the content.
      * @param {number} [defaultLength=32] - The default length to use if the terminal width cannot be determined.
      * @returns {number} The calculated width.
      */
-    private calc(length: number, defaultLength = 32) {
-        const columns: number | undefined = (stdout as (WriteStream & { fd: 1 }) | undefined)?.columns;
+    private calc(length: number, defaultLength = 32): number {
+        const columns = this.column();
 
-        const clientWidth = (columns ?? defaultLength) - length;
-        return clientWidth <= 0 ? defaultLength : clientWidth;
+        return (columns ?? defaultLength) - length;
+    }
+
+    /**
+     * Retrieves the current width of the terminal in columns.
+     * @private
+     * @returns {number | undefined} The number of columns in the terminal, or `undefined` if the terminal width cannot be determined.
+     */
+    private column(): number | undefined {
+        return (stdout as (WriteStream & { fd: 1 }) | undefined)?.columns;
     }
 
     /**
@@ -127,7 +169,7 @@ export default class PrintError extends TraceError {
      * @param {string} content - The content to highlight.
      * @returns {string} The highlighted content.
      */
-    private highlight(color: string, content: string) {
+    private highlight(color: string, content: string): string {
         const stylish: ChalkInstance = this.palette(color);
         return stylish(content);
     }
@@ -139,7 +181,7 @@ export default class PrintError extends TraceError {
      * @param {string} [separator='-'] - The character to repeat.
      * @returns {string} The string filled with the separator character.
      */
-    private divide(length: number, separator = '-') {
+    private divide(length: number, separator = '-'): string {
         const ls: string[] = Array.from({ length }).map(() => separator);
         return ls.join('');
     }
