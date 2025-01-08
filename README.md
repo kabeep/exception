@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="814" src="https://raw.githubusercontent.com/kabeep/exception/master/docs/images/logo-dark.png" alt="logo-dark">
+<img width="814" src="assets/logo-dark.png" alt="logo-dark">
 
 Exception is a custom error library for Node.js that provides a more flexible and customizable way of handling errors.
 
@@ -17,9 +17,7 @@ English | [简体中文](README.zh-CN.md)
 
 ![Alt](https://repobeats.axiom.co/api/embed/92224457b32c02414aa34c21a923f17f95019cd4.svg "Repobeats analytics image")
 
-<img width="814" src="https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Inheritance-and-prototype-chain.png" alt="inheritance-tree">
-
-Inheritance and the prototype chain
+<img width="814" src="assets/preview.png" alt="preview.png">
 
 </div>
 
@@ -36,6 +34,8 @@ The goal of Exception is to transform unexpected occurrences into anticipated ou
 
 It allows Error objects to throw exception and stack information in a more aesthetically pleasing and intuitive manner,
 and can also serve as Notify to output critical information in workflows.
+
+<img width="600" src="assets/Inheritance-and-prototype-chain.png" alt="inheritance-tree">
 
 ## ⚙️ Installation
 
@@ -57,7 +57,7 @@ pnpm add @kabeep/exception
 
 [example](example/default.ts)
 
-![Plain-text-or-Error-object](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Plain-text-or-Error-object.png)
+![Plain-text-or-Error-object](assets/Plain-text-or-Error-object.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -73,7 +73,7 @@ throw new Exception(new Error('Argument example'));
 
 [example](example/promise.ts)
 
-![Using-in-Asynchronous-Contexts](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Using-in-Asynchronous-Contexts.png)
+![Using-in-Asynchronous-Contexts](assets/Using-in-Asynchronous-Contexts.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -89,7 +89,7 @@ import Exception from '@kabeep/exception';
 
 [example](example/stylish.ts)
 
-![Custom-Styles](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Custom-Styles.png)
+![Custom-Styles](assets/Custom-Styles.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -106,7 +106,7 @@ console.log(
 
 [example](example/extends.ts)
 
-![Custom-Exceptions](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Custom-Exceptions.png)
+![Custom-Exceptions](assets/Custom-Exceptions.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -128,7 +128,7 @@ console.log(warn);
 
 [example](example/extends.ts)
 
-![Print-Key-Information](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Print-Key-Information.png)
+![Print-Key-Information](assets/Print-Key-Information.png)
 
 ```javascript
 import Exception from '@kabeep/exception';

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="814" src="https://raw.githubusercontent.com/kabeep/exception/master/docs/images/logo-dark.png" alt="logo-dark">
+<img width="814" src="assets/logo-dark.png" alt="logo-dark">
 
 Exception 是一个用于 Node.js 的自定义错误库，它提供了一种更加灵活和可定制的错误处理方式。
 
@@ -17,9 +17,7 @@ Exception 是一个用于 Node.js 的自定义错误库，它提供了一种更�
 
 ![Alt](https://repobeats.axiom.co/api/embed/92224457b32c02414aa34c21a923f17f95019cd4.svg "Repobeats analytics image")
 
-<img width="814" src="https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Inheritance-and-prototype-chain.png" alt="inheritance-tree">
-
-继承与原型链
+<img width="814" src="assets/preview.png" alt="preview.png">
 
 </div>
 
@@ -33,6 +31,8 @@ Exception 的目标是尽可能的将 ~~**例外(Exception)**~~ 变为 **预期(
 
 它允许 _Error_ 对象以更美化与直观的方式将异常信息和栈信息抛出，
 也可以作为 _Notify_ 在工作流中打印关键性信息。
+
+<img width="600" src="assets/Inheritance-and-prototype-chain.png" alt="inheritance-tree">
 
 ## ⚙️ 安装
 
@@ -54,7 +54,7 @@ pnpm add @kabeep/exception
 
 [用例](example/default.ts)
 
-![Plain-text-or-Error-object](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Plain-text-or-Error-object.png)
+![Plain-text-or-Error-object](assets/Plain-text-or-Error-object.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -70,7 +70,7 @@ throw new Exception(new Error('Argument example'));
 
 [用例](example/promise.ts)
 
-![Using-in-Asynchronous-Contexts](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Using-in-Asynchronous-Contexts.png)
+![Using-in-Asynchronous-Contexts](assets/Using-in-Asynchronous-Contexts.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -86,7 +86,7 @@ import Exception from '@kabeep/exception';
 
 [用例](example/stylish.ts)
 
-![Custom-Styles](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Custom-Styles.png)
+![Custom-Styles](assets/Custom-Styles.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -103,7 +103,7 @@ console.log(
 
 [用例](example/extends.ts)
 
-![Custom-Exceptions](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Custom-Exceptions.png)
+![Custom-Exceptions](assets/Custom-Exceptions.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
@@ -125,7 +125,7 @@ console.log(warn);
 
 [用例](example/extends.ts)
 
-![Print-Key-Information](https://raw.githubusercontent.com/kabeep/exception/master/docs/images/Print-Key-Information.png)
+![Print-Key-Information](assets/Print-Key-Information.png)
 
 ```javascript
 import Exception from '@kabeep/exception';
