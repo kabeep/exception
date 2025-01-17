@@ -1,5 +1,4 @@
-import chalk, { type ChalkInstance } from 'chalk';
-import chalkPipe from 'chalk-pipe';
+import chalkPipe, { chalk, type ChalkInstance } from 'chalk-pipe';
 import { isBgRgb, isRgb, isString, normalizeRgb } from '../helpers/index.js';
 
 /**
@@ -14,6 +13,7 @@ export default class PaletteError extends Error {
      * @param {(string | Error)} message - The error message or an Error object.
      */
     constructor(message: string | Error) {
+        // TODO: Error.cause
         super(isString(message) ? message : message?.message || '');
 
         /**

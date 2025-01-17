@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { chalk } from 'chalk-pipe';
 import { expect, test } from 'vitest';
 import PaletteError from '../../src/core/PaletteError.js';
 

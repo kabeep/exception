@@ -2,7 +2,7 @@ import { basename } from 'node:path';
 import { cwd, stdout } from 'node:process';
 import type { WriteStream } from 'node:tty';
 import { eastAsianWidth } from 'get-east-asian-width';
-import type { ChalkInstance } from 'chalk';
+import type { ChalkInstance } from 'chalk-pipe';
 import type { TraceOption } from '../shared/index.js';
 import TraceError from './TraceError.js';
 
