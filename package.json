@@ -1,6 +1,6 @@
 {
     "name": "@kabeep/exception",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "type": "module",
     "description": "A Node.js Custom Error Library that print error stack without clutter.",
     "main": "./dist/index.js",
