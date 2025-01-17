@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import TraceError from '../../src/core/TraceError';
+import TraceError from '../../src/core/TraceError.js';
 
 test('trace - should return empty array when stack is empty', () => {
     const traceError = new TraceError('');

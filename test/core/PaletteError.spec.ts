@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import { expect, test } from 'vitest';
-import PaletteError from '../../src/core/PaletteError';
+import PaletteError from '../../src/core/PaletteError.js';
 
 test('PaletteError - should create an instance with uncorrected error message', () => {
-    const error = new PaletteError(undefined);
+    const error = new PaletteError(undefined as any);
     expect(error.message).toBe('');
 });
 

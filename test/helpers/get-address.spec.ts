@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import getAddress from '../../src/helpers/get-address';
+import getAddress from '../../src/helpers/get-address.js';
 
 test('getAddress - should return empty string for invalid input', () => {
     const text = '';

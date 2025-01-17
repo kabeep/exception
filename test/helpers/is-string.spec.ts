@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import isString from '../../src/helpers/is-string';
+import isString from '../../src/helpers/is-string.js';
 
 test('isString - should return true for string value', () => {
     const value = 'Hello';

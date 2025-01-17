@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import normalizeTrack from '../../src/helpers/normalize-track';
+import normalizeTrack from '../../src/helpers/normalize-track.js';
 
 test('normalizeTrack - should extract and trim substring within specified range', () => {
     const string_ = 'This is a test string.';

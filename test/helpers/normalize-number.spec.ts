@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import normalizeNumber from '../../src/helpers/normalize-number';
+import normalizeNumber from '../../src/helpers/normalize-number.js';
 
 test('normalizeNumber - should convert string to number', () => {
     const value = '123';
@@ -27,7 +27,7 @@ test('normalizeNumber - should return NaN for undefined', () => {
 
 test('normalizeNumber - should return NaN for null', () => {
     const value = null;
-    const result = normalizeNumber(value);
+    const result = normalizeNumber(value as any);
     expect(Number.isNaN(result)).toBe(true);
 });
 

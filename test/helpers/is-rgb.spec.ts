@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import isRgb from '../../src/helpers/is-rgb';
+import isRgb from '../../src/helpers/is-rgb.js';
 
 test('isRgb - should return true for valid RGB color format', () => {
     const value = '(255,0,0)';
