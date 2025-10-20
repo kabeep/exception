@@ -1,4 +1,4 @@
-import Exception from '../src/index.js';
+import Exception from '../src';
 
 // [-------------------------------- Default example ---------------------------------]
 //

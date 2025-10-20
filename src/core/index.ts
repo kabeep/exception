@@ -1,1 +1,1 @@
-export { default } from './Exception.js';
+export { default } from './Exception';

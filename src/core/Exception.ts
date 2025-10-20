@@ -1,4 +1,4 @@
-import PrintError from './PrintError.js';
+import PrintError from './PrintError';
 
 /**
  * A custom exception with enhanced printing capabilities.

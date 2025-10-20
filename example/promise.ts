@@ -1,4 +1,4 @@
-import Exception from '../src/index.js';
+import Exception from '../src';
 
 // [-------------------------------- Promise example ---------------------------------]
 //
@@ -9,6 +9,8 @@ import Exception from '../src/index.js';
 //   (exception)/example/promise.ts:23:3
 //
 // [---------------------------------------------------------------------- Exception -]
-(async () => {
-    throw new Exception('Promise example');
-})().catch(console.log);
+(
+    async () => {
+        throw new Exception('Promise example');
+    }
+)().catch(console.log);

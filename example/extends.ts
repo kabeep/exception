@@ -1,13 +1,13 @@
-import Exception from '../src/index.js';
+import Exception from '../src';
 
 const styles = 'black.bg#e6a23c';
 
 class CustomException extends Exception {
-    constructor(message: any) {
+    constructor (message: any) {
         super(message, styles);
     }
 
-    toString() {
+    toString () {
         return this.info(styles);
     }
 }

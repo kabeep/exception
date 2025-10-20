@@ -1,10 +1,10 @@
-import Exception from '../src/index.js';
+import Exception from '../src';
 
-function error() {
+function error () {
     throw new Exception('Example of eval');
 }
 
-function run() {
+function run () {
     try {
         eval('error()');
     } catch (err: any) {

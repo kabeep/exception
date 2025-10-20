@@ -1,14 +1,14 @@
-import Exception from '../src/index.js';
+import Exception from '../src';
 
-function error() {
+function error () {
     throw new Exception('Nested example');
 }
 
 const raise = {
-    init: error,
+    init: error
 };
 
-function run() {
+function run () {
     try {
         raise.init();
     } catch (err: any) {

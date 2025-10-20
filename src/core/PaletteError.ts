@@ -1,5 +1,5 @@
 import chalkPipe, { type ChalkInstance, chalk } from 'chalk-pipe';
-import { isBgRgb, isRgb, isString, normalizeRgb } from '../helpers/index.js';
+import { isBgRgb, isRgb, isString, normalizeRgb } from '../helpers';
 
 /**
  * A palette error.

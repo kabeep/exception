@@ -1,4 +1,4 @@
-import isRgb from './is-rgb.js';
+import isRgb from './is-rgb';
 
 function isBgRgb(value: string): value is string {
     if (!value.startsWith('bg')) return false;

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import Exception from '../../src/index.js';
+import Exception from '../../src';
 
 test('Exception - constructor with no arguments should create an instance with default values', () => {
     const exception = new Exception();

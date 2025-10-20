@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import TraceError from '../../src/core/TraceError.js';
+import TraceError from '../../src/core/TraceError';
 
 test('trace - should return empty array when stack is empty', () => {
     const traceError = new TraceError('');
@@ -23,7 +23,7 @@ test('trace - should return correct anonymous trace options array', () => {
             file: 'file.js',
             line: 1,
             col: 2,
-            packageName: '[current]',
+            packageName: '[current]'
         },
         {
             original: 'at example/file.js:3:4',
@@ -32,8 +32,8 @@ test('trace - should return correct anonymous trace options array', () => {
             file: 'file.js',
             line: 3,
             col: 4,
-            packageName: '[current]',
-        },
+            packageName: '[current]'
+        }
     ];
     expect(result).toEqual(expected);
 });
@@ -52,8 +52,8 @@ test('trace - should return correct partial trace options array', () => {
             file: undefined,
             line: undefined,
             col: undefined,
-            packageName: '[current]',
-        },
+            packageName: '[current]'
+        }
     ];
     expect(result).toEqual(expected);
 });
@@ -93,7 +93,7 @@ test('trace - should return correct trace options array', () => {
             file: 'file.js',
             line: 123,
             col: 456,
-            packageName: '[current]',
+            packageName: '[current]'
         },
         {
             original: 'at eval (eval at <anonymous> (example/file.js:789:101112), <anonymous>:1:2)',
@@ -102,7 +102,7 @@ test('trace - should return correct trace options array', () => {
             file: 'file.js',
             line: 789,
             col: 101112,
-            packageName: '[current]',
+            packageName: '[current]'
         },
         {
             original: 'at Object.<anonymous> (example/file.js:171819:20)',
@@ -111,7 +111,7 @@ test('trace - should return correct trace options array', () => {
             file: 'file.js',
             line: 171819,
             col: 20,
-            packageName: '[current]',
+            packageName: '[current]'
         },
         {
             original: 'at Object.<anonymous> (example/file.js:212223:24)',
@@ -120,8 +120,8 @@ test('trace - should return correct trace options array', () => {
             file: 'file.js',
             line: 212223,
             col: 24,
-            packageName: '[current]',
-        },
+            packageName: '[current]'
+        }
     ];
     expect(result).toEqual(expected);
 });

@@ -4,9 +4,9 @@ import {
     normalizeNumber,
     normalizePath,
     normalizeTrack,
-} from '../helpers/index.js';
-import type { TraceOption } from '../shared/index.js';
-import PaletteError from './PaletteError.js';
+} from '../helpers';
+import type { TraceOption } from '../shared';
+import PaletteError from './PaletteError';
 
 /**
  * An error with stack trace information.

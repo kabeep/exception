@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import normalizeNumber from '../../src/helpers/normalize-number.js';
+import normalizeNumber from '../../src/helpers/normalize-number';
 
 test('normalizeNumber - should convert string to number', () => {
     const value = '123';

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import normalizePath from '../../src/helpers/normalize-path.js';
+import normalizePath from '../../src/helpers/normalize-path';
 
 test('normalizePath - should replace single backslashes with slashes', () => {
     const path = 'C:\\Users\\User\\Documents\\file.txt';

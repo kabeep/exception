@@ -3,8 +3,8 @@ import { cwd, stdout } from 'node:process';
 import type { WriteStream } from 'node:tty';
 import type { ChalkInstance } from 'chalk-pipe';
 import { eastAsianWidth } from 'get-east-asian-width';
-import type { TraceOption } from '../shared/index.js';
-import TraceError from './TraceError.js';
+import type { TraceOption } from '../shared';
+import TraceError from './TraceError';
 
 /**
  * An error with formatted printing capabilities.

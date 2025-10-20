@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import normalizeRgb from '../../src/helpers/normalize-rgb.js';
+import normalizeRgb from '../../src/helpers/normalize-rgb';
 
 test('normalizeRgb - should normalize RGB color string', () => {
     const color = '(255, 0, 0)';

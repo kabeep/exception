@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import PrintError from '../../src/core/PrintError.js';
-import type { TraceOption } from '../../src/shared/index.js';
+import PrintError from '../../src/core/PrintError';
+import type { TraceOption } from '../../src/shared';
 
 test('PrintError - should create an instance with correct message and stack', () => {
     const errorMessage = 'Test error message';
@@ -48,7 +48,7 @@ test('PrintError.print - should generate correct trace information', () => {
             col: 1,
             name: 'exampleFunction',
             packageName: 'example-package',
-            address: '/path/to/example-package/example.js',
+            address: '/path/to/example-package/example.js'
         },
         {
             original: 'at anotherFunction (/path/to/current/another.js:20:2)',
@@ -57,8 +57,8 @@ test('PrintError.print - should generate correct trace information', () => {
             col: 2,
             name: 'anotherFunction',
             packageName: '[current]',
-            address: '/path/to/current/another.js',
-        },
+            address: '/path/to/current/another.js'
+        }
     ];
 
     const expected =
