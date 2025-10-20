@@ -1,4 +1,4 @@
-import chalkPipe, { chalk, type ChalkInstance } from 'chalk-pipe';
+import chalkPipe, { type ChalkInstance, chalk } from 'chalk-pipe';
 import { isBgRgb, isRgb, isString, normalizeRgb } from '../helpers/index.js';
 
 /**

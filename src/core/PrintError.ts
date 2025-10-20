@@ -1,8 +1,8 @@
 import { basename } from 'node:path';
 import { cwd, stdout } from 'node:process';
 import type { WriteStream } from 'node:tty';
-import { eastAsianWidth } from 'get-east-asian-width';
 import type { ChalkInstance } from 'chalk-pipe';
+import { eastAsianWidth } from 'get-east-asian-width';
 import type { TraceOption } from '../shared/index.js';
 import TraceError from './TraceError.js';
 
@@ -76,16 +76,21 @@ export default class PrintError extends TraceError {
 
         return track
             .map((item, index) => {
-                const titleStylish: ChalkInstance = this.palette('yellowBright');
+                const titleStylish: ChalkInstance =
+                    this.palette('yellowBright');
                 const title = titleStylish(`${item.file}:${item.line}`);
                 const summary = `- ${title} ${item.name}`;
 
                 const current = item.packageName.replace('[current]', root);
                 const startIndex = item.address.indexOf(current);
-                const shorthandAddress = item.address.slice(Math.max(0, startIndex));
+                const shorthandAddress = item.address.slice(
+                    Math.max(0, startIndex),
+                );
 
                 const descStylish: ChalkInstance = this.palette('gray');
-                let description = descStylish(shorthandAddress.replace(current, `(${current})`));
+                let description = descStylish(
+                    shorthandAddress.replace(current, `(${current})`),
+                );
 
                 const isLatest = index === length - 1;
                 if (!isLatest) {

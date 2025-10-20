@@ -1,5 +1,10 @@
 import { basename, dirname } from 'node:path';
-import { getAddress, normalizeNumber, normalizePath, normalizeTrack } from '../helpers/index.js';
+import {
+    getAddress,
+    normalizeNumber,
+    normalizePath,
+    normalizeTrack,
+} from '../helpers/index.js';
 import type { TraceOption } from '../shared/index.js';
 import PaletteError from './PaletteError.js';
 
@@ -57,7 +62,10 @@ export default class TraceError extends PaletteError {
         text = text.replace(/^at /, '');
 
         // Unknown error
-        if (text === 'Error (<anonymous>)' || text === 'Error (<anonymous>:null:null)') {
+        if (
+            text === 'Error (<anonymous>)' ||
+            text === 'Error (<anonymous>:null:null)'
+        ) {
             return undefined;
         }
 
@@ -74,7 +82,11 @@ export default class TraceError extends PaletteError {
         const addressMatch = getAddress(text);
         if (addressMatch) {
             address = addressMatch.trim();
-            name = isEval ? 'eval' : text.slice(0, Math.max(0, text.length - address.length - 2)).trim();
+            name = isEval
+                ? 'eval'
+                : text
+                      .slice(0, Math.max(0, text.length - address.length - 2))
+                      .trim();
         } else {
             address = text;
             name = 'anonymous';
@@ -86,7 +98,11 @@ export default class TraceError extends PaletteError {
         if (lineMatch) {
             line = normalizeNumber(lineMatch[1]);
             col = normalizeNumber(lineMatch[2]);
-            filepath = normalizeTrack(address, 0, address.length - lineMatch[0].length);
+            filepath = normalizeTrack(
+                address,
+                0,
+                address.length - lineMatch[0].length,
+            );
         }
 
         if (filepath) {
@@ -98,7 +114,9 @@ export default class TraceError extends PaletteError {
         }
 
         if (directory) {
-            const match = /node_modules\/([^/]+)(?!.*node_modules.*)/.exec(directory);
+            const match = /node_modules\/([^/]+)(?!.*node_modules.*)/.exec(
+                directory,
+            );
             if (match) packageName = match[1];
         }
 
