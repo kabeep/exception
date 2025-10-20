@@ -35,6 +35,7 @@
         "@types/chalk-pipe": "^2.0.4",
         "@types/node": "^20.12.7",
         "@vitest/coverage-istanbul": "^3.2.4",
+        "@vitest/ui": "3.2.4",
         "docdash": "^2.0.2",
         "husky": "^9.0.11",
         "jsdoc": "^4.0.2",
