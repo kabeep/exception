@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
-        "module": "Node16",
-        "moduleResolution": "Node16",
+        "target": "ESNext",
+        "module": "ES2015",
+        "moduleResolution": "Bundler",
         "outDir": "./dist",
         "rootDir": "./src",
         "strict": true,
@@ -13,8 +13,14 @@
         "declaration": true,
         "experimentalDecorators": true
     },
+    "ts-node": {
+        "experimentalSpecifierResolution": "node",
+        "esm": true,
+        "transpileOnly": true
+    },
     "include": [
-        "src/**/*"
+        "src",
+        "test"
     ],
     "exclude": [
         "node_modules",
