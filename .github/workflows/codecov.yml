@@ -6,10 +6,10 @@ name: coverage
 on:
   push:
     paths:
-      - 'test/**'
+      - 'test/**/*.spec.ts'
   pull_request:
     paths:
-      - 'test/**'
+      - 'test/**/*.spec.ts'
 
 jobs:
   coverage:
@@ -27,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Run test
-        run: npm run coverage
+        run: npm run test:coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
