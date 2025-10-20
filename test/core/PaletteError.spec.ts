@@ -22,15 +22,12 @@ test('PaletteError.palette - should return a Chalk instance with specified style
     expect(result).toBe(expected);
 });
 
-test(
-    'PaletteError.palette - should return a Chalk instance with default style if styles parameter is not a string',
-    () => {
-        const paletteError = new PaletteError('');
-        const result = paletteError.palette(undefined, chalk);
-        const expected = chalk;
-        expect(result).toBe(expected);
-    }
-);
+test('PaletteError.palette - should return a Chalk instance with default style if styles parameter is not a string', () => {
+    const paletteError = new PaletteError('');
+    const result = paletteError.palette(undefined, chalk);
+    const expected = chalk;
+    expect(result).toBe(expected);
+});
 
 test('PaletteError.padding - should add padding around the provided content', () => {
     const content = 'Test content';

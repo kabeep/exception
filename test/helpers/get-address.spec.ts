@@ -16,7 +16,8 @@ test('getAddress - should return empty string if no parentheses are found', () =
 });
 
 test('getAddress - should return empty string if parentheses are not closed', () => {
-    const text = 'This is a test string with an open parenthesis ( but no closing parenthesis';
+    const text =
+        'This is a test string with an open parenthesis ( but no closing parenthesis';
     const result = getAddress(text);
     const expected = '';
     expect(result).toBe(expected);
@@ -38,7 +39,8 @@ test('getAddress - should return the content within the last set of parentheses'
 });
 
 test('getAddress - should handle nested parentheses and return the content within the outermost set', () => {
-    const text = 'This is a test string with (nested (parentheses) within parentheses)';
+    const text =
+        'This is a test string with (nested (parentheses) within parentheses)';
     const result = getAddress(text);
     const expected = 'parentheses';
     expect(result).toBe(expected);
