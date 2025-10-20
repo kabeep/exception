@@ -44,7 +44,7 @@
     "devDependencies": {
         "@biomejs/biome": "^2.2.6",
         "@swc/core": "^1.5.0",
-        "@types/chalk-pipe": "^2.0.4",
+        "@types/chalk-pipe": "^5.1.1",
         "@types/node": "^20.12.7",
         "@vitest/coverage-istanbul": "^3.2.4",
         "@vitest/ui": "3.2.4",
